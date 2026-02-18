@@ -45,16 +45,13 @@ body {
   padding-top: 10px;
 }
 
-/* Desktop: keep logo anchored to the bottom-left of the viewport */
+/* Keep logo directly under the callout box (natural flow) */
 .cornerLogo {
-  position: fixed;
-  bottom: 28px;
-  left: 28px;
-  width: min(360px, 30vw);
+  display: block;
+  margin-top: 26px;
+  width: min(360px, 32vw);
   height: auto;
-  opacity: 0.85;
-  pointer-events: none;
-  z-index: 0;
+  opacity: 0.9;
 }
 
 .heroTitle {
