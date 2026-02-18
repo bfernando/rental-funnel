@@ -43,18 +43,18 @@ body {
 
 .hero {
   padding-top: 10px;
-  position: relative;
-  min-height: 520px;
 }
 
+/* Desktop: keep logo anchored to the bottom-left of the viewport */
 .cornerLogo {
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  width: min(320px, 35vw);
-  max-width: 360px;
+  position: fixed;
+  bottom: 28px;
+  left: 28px;
+  width: min(360px, 30vw);
   height: auto;
-  opacity: 0.9;
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .heroTitle {
@@ -225,8 +225,9 @@ select:focus {
 
   .cornerLogo {
     position: static;
-    width: 200px;
+    width: 220px;
     margin-top: 32px;
+    opacity: 0.9;
   }
 }
 
