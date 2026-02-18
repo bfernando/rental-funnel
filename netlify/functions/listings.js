@@ -30,7 +30,8 @@ exports.handler = async function handler() {
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
         // Cache a little to reduce upstream calls (tune as desired)
-        'Cache-Control': 'public, max-age=300',
+        // 10 minutes is a good balance for freshness + performance during ad traffic spikes
+        'Cache-Control': 'public, max-age=600',
       },
       body: text,
     };
