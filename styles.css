@@ -43,21 +43,18 @@ body {
 
 .hero {
   padding-top: 10px;
+  position: relative;
+  min-height: 520px;
 }
 
-.badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 10px 16px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.55);
-}
-
-.badgeLogo {
-  height: 28px;
-  width: auto;
-  display: block;
+.cornerLogo {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: min(320px, 35vw);
+  max-width: 360px;
+  height: auto;
+  opacity: 0.9;
 }
 
 .heroTitle {
@@ -225,9 +222,16 @@ select:focus {
   .heroTitle { font-size: 54px; }
   .heroSub { font-size: 22px; }
   .heroCallout ul { font-size: 18px; }
+
+  .cornerLogo {
+    position: static;
+    width: 200px;
+    margin-top: 32px;
+  }
 }
 
 @media (max-width: 520px) {
   .fieldRow { grid-template-columns: 1fr; }
   .card { padding: 26px 22px; }
+  .hero { min-height: unset; }
 }
