@@ -90,7 +90,39 @@ function setError(msg) {
   el.textContent = msg || '';
 }
 
+function setAttributionFields() {
+  const qs = new URLSearchParams(window.location.search);
+
+  const set = (id, value) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.value = (value ?? '').toString().slice(0, 500);
+  };
+
+  set('referrer', document.referrer || '');
+  set('landingPage', window.location.href);
+  set('utmSource', qs.get('utm_source'));
+  set('utmMedium', qs.get('utm_medium'));
+  set('utmCampaign', qs.get('utm_campaign'));
+  set('utmTerm', qs.get('utm_term'));
+  set('utmContent', qs.get('utm_content'));
+
+  // Common click ids
+  set('fbclid', qs.get('fbclid'));
+  set('gclid', qs.get('gclid'));
+  set('msclkid', qs.get('msclkid'));
+  set('ttclid', qs.get('ttclid'));
+
+  // Optional explicit ids you might append in ads
+  set('adId', qs.get('ad_id') || qs.get('adid') || qs.get('ad'));
+  set('adsetId', qs.get('adset_id') || qs.get('adsetid') || qs.get('adset'));
+  set('campaignId', qs.get('campaign_id') || qs.get('campaignid') || qs.get('campaign'));
+
+  set('submittedAt', new Date().toISOString());
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
+  setAttributionFields();
   await loadListings();
 
   const select = document.getElementById('listing');
@@ -111,6 +143,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     setError('');
+
+    // update timestamp at submit time
+    const submittedAt = document.getElementById('submittedAt');
+    if (submittedAt) submittedAt.value = new Date().toISOString();
 
     syncListingHiddenFields();
     const listingUrl = listingUrlInput.value;

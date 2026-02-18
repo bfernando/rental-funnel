@@ -20,20 +20,22 @@
       <div class="layout">
         <section class="hero" aria-label="Hero">
           <div class="badge">ELITE PROPERTY MANAGEMENT</div>
-          <h1 class="heroTitle">Rental Listings</h1>
-          <p class="heroSub">Tell us where you want to live and we’ll send you the next steps.</p>
+          <h1 class="heroTitle">Find Your Next Rental</h1>
+          <p class="heroSub">
+            Select a property and share your contact info so we can follow up and track which ad brought you here.
+          </p>
 
           <div class="heroCallout">
             <ul>
-              <li>Fast response from our leasing team</li>
-              <li>Pick a property from our live listings</li>
+              <li>We’ll take you straight to the listing after you submit</li>
+              <li>Then you can review details and apply on the property page</li>
             </ul>
           </div>
         </section>
 
         <aside class="card" aria-label="Lead form">
           <h2 class="cardTitle">Get Started</h2>
-          <p class="cardSub">Enter your details and select a property to view.</p>
+          <p class="cardSub">Enter your details, pick a property, and we’ll send you to the listing.</p>
 
           <!-- Netlify Forms: captured even when JS intercepts submit -->
           <form
@@ -80,17 +82,37 @@
             <input type="hidden" id="listingId" name="listingId" value="" />
             <input type="hidden" id="listingUrl" name="listingUrl" value="" />
 
+            <!-- Attribution / context (captured automatically from URL params + referrer) -->
+            <input type="hidden" id="referrer" name="referrer" value="" />
+            <input type="hidden" id="landingPage" name="landingPage" value="" />
+            <input type="hidden" id="utmSource" name="utm_source" value="" />
+            <input type="hidden" id="utmMedium" name="utm_medium" value="" />
+            <input type="hidden" id="utmCampaign" name="utm_campaign" value="" />
+            <input type="hidden" id="utmTerm" name="utm_term" value="" />
+            <input type="hidden" id="utmContent" name="utm_content" value="" />
+            <input type="hidden" id="fbclid" name="fbclid" value="" />
+            <input type="hidden" id="gclid" name="gclid" value="" />
+            <input type="hidden" id="msclkid" name="msclkid" value="" />
+            <input type="hidden" id="ttclid" name="ttclid" value="" />
+            <input type="hidden" id="adId" name="ad_id" value="" />
+            <input type="hidden" id="adsetId" name="adset_id" value="" />
+            <input type="hidden" id="campaignId" name="campaign_id" value="" />
+            <input type="hidden" id="submittedAt" name="submittedAt" value="" />
+
             <div class="consent">
               <input id="consent" name="consent" type="checkbox" required />
               <label for="consent">
-                I consent to receive emails and text messages from Elite Property Management regarding this
-                inquiry and future promotional updates. Message/data rates may apply.
+                I consent to receive emails and text messages from Elite Property Management about this property inquiry
+                (including scheduling/showings and application-related follow-up). Message/data rates may apply.
               </label>
             </div>
 
             <button class="btn" type="submit" id="submitBtn">Continue to Listing</button>
 
-            <p class="finePrint">By submitting, you confirm you are authorized to be contacted at the details provided.</p>
+            <p class="finePrint">
+              By submitting, you confirm you are authorized to be contacted at the details provided. You’ll be redirected to the
+              selected property listing to view details and apply.
+            </p>
 
             <p class="error" id="formError" role="alert" aria-live="polite"></p>
           </form>
