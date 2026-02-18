@@ -1,0 +1,230 @@
+:root {
+  --bg1: #587d9b;
+  --bg2: #4f7797;
+  --text: #0a2d41;
+  --white: #ffffff;
+  --muted: rgba(10, 45, 65, 0.75);
+  --border: rgba(10, 45, 65, 0.18);
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+  --radius: 18px;
+  --btn: #0d4f78;
+  --btnHover: #0b4366;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: linear-gradient(180deg, var(--bg1), var(--bg2));
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 20px;
+}
+
+.layout {
+  width: 1100px;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 44px;
+  align-items: start;
+}
+
+.hero {
+  padding-top: 10px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+}
+
+.heroTitle {
+  margin: 18px 0 8px;
+  font-size: 72px;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+  color: rgba(10, 45, 65, 0.55);
+}
+
+.heroSub {
+  margin: 0 0 22px;
+  font-size: 26px;
+  font-weight: 700;
+  color: rgba(10, 45, 65, 0.75);
+}
+
+.heroCallout {
+  margin-top: 18px;
+  max-width: 520px;
+  padding: 24px 28px;
+  border-radius: 14px;
+  background: rgba(10, 45, 65, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.heroCallout ul {
+  margin: 0;
+  padding-left: 22px;
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 800;
+  font-size: 22px;
+}
+
+.heroCallout li + li { margin-top: 14px; }
+
+.card {
+  background: var(--white);
+  border-radius: 22px;
+  padding: 34px 34px 28px;
+  box-shadow: var(--shadow);
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 42px;
+  letter-spacing: -0.03em;
+}
+
+.cardSub {
+  margin: 8px 0 22px;
+  color: rgba(10, 45, 65, 0.7);
+  font-weight: 600;
+}
+
+.field { margin-bottom: 14px; }
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: rgba(10, 45, 65, 0.85);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(10, 45, 65, 0.2);
+  outline: none;
+  font-size: 15px;
+  background: #fff;
+}
+
+input:focus,
+select:focus {
+  border-color: rgba(13, 79, 120, 0.55);
+  box-shadow: 0 0 0 4px rgba(13, 79, 120, 0.12);
+}
+
+.help {
+  margin-top: 8px;
+  font-size: 12px;
+  color: rgba(10, 45, 65, 0.6);
+}
+
+.consent {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 12px;
+  align-items: start;
+  margin: 16px 0 18px;
+  padding: 14px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(10, 45, 65, 0.12);
+  background: rgba(13, 79, 120, 0.05);
+}
+
+.consent input { margin-top: 3px; }
+
+.consent label {
+  margin: 0;
+  font-weight: 700;
+  font-size: 13px;
+  color: rgba(10, 45, 65, 0.8);
+}
+
+.btn {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: none;
+  background: var(--btn);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.btn:hover { background: var(--btnHover); }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.finePrint {
+  margin: 14px 0 0;
+  font-size: 12px;
+  color: rgba(10, 45, 65, 0.65);
+}
+
+.error {
+  margin: 10px 0 0;
+  color: #b42318;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 980px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .heroTitle { font-size: 54px; }
+  .heroSub { font-size: 22px; }
+  .heroCallout ul { font-size: 18px; }
+}
+
+@media (max-width: 520px) {
+  .fieldRow { grid-template-columns: 1fr; }
+  .card { padding: 26px 22px; }
+}

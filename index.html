@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elite Property Management - Rental Inquiry</title>
+    <meta name="description" content="Request more information about a rental listing." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="layout">
+        <section class="hero" aria-label="Hero">
+          <div class="badge">ELITE PROPERTY MANAGEMENT</div>
+          <h1 class="heroTitle">Rental Listings</h1>
+          <p class="heroSub">Tell us where you want to live and we’ll send you the next steps.</p>
+
+          <div class="heroCallout">
+            <ul>
+              <li>Fast response from our leasing team</li>
+              <li>Pick a property from our live listings</li>
+            </ul>
+          </div>
+        </section>
+
+        <aside class="card" aria-label="Lead form">
+          <h2 class="cardTitle">Get Started</h2>
+          <p class="cardSub">Enter your details and select a property to view.</p>
+
+          <!-- Netlify Forms: captured even when JS intercepts submit -->
+          <form
+            id="leadForm"
+            name="rental-inquiry"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+          >
+            <input type="hidden" name="form-name" value="rental-inquiry" />
+            <p class="srOnly">
+              <label>Don’t fill this out: <input name="bot-field" /></label>
+            </p>
+
+            <div class="fieldRow">
+              <div class="field">
+                <label for="firstName">First Name</label>
+                <input id="firstName" name="firstName" type="text" autocomplete="given-name" required />
+              </div>
+              <div class="field">
+                <label for="lastName">Last Name</label>
+                <input id="lastName" name="lastName" type="text" autocomplete="family-name" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone Number</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required />
+            </div>
+
+            <div class="field">
+              <label for="email">Email Address</label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+
+            <div class="field">
+              <label for="listing">Select Address</label>
+              <select id="listing" name="listing" required>
+                <option value="" selected disabled>Loading listings…</option>
+              </select>
+              <div class="help" id="listingHelp">If the list doesn’t load, refresh the page.</div>
+            </div>
+
+            <input type="hidden" id="listingId" name="listingId" value="" />
+            <input type="hidden" id="listingUrl" name="listingUrl" value="" />
+
+            <div class="consent">
+              <input id="consent" name="consent" type="checkbox" required />
+              <label for="consent">
+                I consent to receive emails and text messages from Elite Property Management regarding this
+                inquiry and future promotional updates. Message/data rates may apply.
+              </label>
+            </div>
+
+            <button class="btn" type="submit" id="submitBtn">Continue to Listing</button>
+
+            <p class="finePrint">By submitting, you confirm you are authorized to be contacted at the details provided.</p>
+
+            <p class="error" id="formError" role="alert" aria-live="polite"></p>
+          </form>
+        </aside>
+      </div>
+    </main>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html>
