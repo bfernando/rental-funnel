@@ -63,6 +63,12 @@ function getSelectedListingUrl() {
   return selected?.dataset?.url || '';
 }
 
+function formDataToObject(formData) {
+  const obj = {};
+  for (const [k, v] of formData.entries()) obj[k] = v.toString();
+  return obj;
+}
+
 async function submitToNetlify(form) {
   // Netlify form submission (without leaving the page)
   const formData = new FormData(form);
@@ -77,6 +83,30 @@ async function submitToNetlify(form) {
 
   // Netlify returns 200/302/etc; we just want "not an outright failure".
   if (!res.ok) throw new Error(`Form submit failed: ${res.status}`);
+
+  return formData;
+}
+
+function fireLeadHook(formData) {
+  // Best-effort hook: does NOT block redirect.
+  // Netlify env var HOOK_URL (server-side) controls whether this forwards anywhere.
+  try {
+    const payload = JSON.stringify(formDataToObject(formData));
+    const url = '/.netlify/functions/lead-hook';
+
+    if (navigator.sendBeacon) {
+      const blob = new Blob([payload], { type: 'application/json' });
+      navigator.sendBeacon(url, blob);
+      return;
+    }
+
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: payload,
+      keepalive: true,
+    }).catch(() => {});
+  } catch (_) {}
 }
 
 function setSubmitState(isSubmitting) {
@@ -157,7 +187,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
       setSubmitState(true);
-      await submitToNetlify(form);
+      const formData = await submitToNetlify(form);
+      fireLeadHook(formData);
       window.location.assign(listingUrl);
     } catch (err) {
       console.error(err);
